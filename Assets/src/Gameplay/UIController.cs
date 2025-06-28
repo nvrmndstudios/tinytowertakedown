@@ -110,6 +110,7 @@ public class UIController : MonoBehaviour
 
     public void UpdateLife(int life)
     {
+        life += 1;
         Debug.Log("Life Count " + life);
         
         for (int i = 0; i < lifeIcons.Length; i++)
