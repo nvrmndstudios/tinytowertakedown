@@ -11,8 +11,7 @@ public class SoundManager : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip clickSFX;
     public AudioClip bgMusic;
-    public AudioClip gameSuccessMusic;
-    public AudioClip gameFailMusic;
+    public AudioClip shoot;
 
     private bool isMuted = false;
 
@@ -41,16 +40,10 @@ public class SoundManager : MonoBehaviour
         PlaySFX(clickSFX);
     }
 
-    public void PlayGameSuccess()
+    public void PlayShoot()
     {
-        PlayMusic(gameSuccessMusic);
+        PlaySFX(shoot);
     }
-
-    public void PlayGameFail()
-    {
-        PlayMusic(gameFailMusic);
-    }
-
     public void PlayMusic(AudioClip clip)
     {
         if (clip == null) return;

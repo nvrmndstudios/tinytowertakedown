@@ -44,6 +44,7 @@ public class ProjectileShooter : MonoBehaviour
     private void FireAtTarget(Transform target)
     {
         GameObject projectile = Instantiate(projectilePrefab, directionSource.position, directionSource.rotation);
+        SoundManager.Instance.PlayShoot();
         projectile.GetComponent<Projectile>().Initialize(target);
     }
 }

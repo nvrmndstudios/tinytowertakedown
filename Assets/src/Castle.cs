@@ -61,7 +61,9 @@ public class Castle : MonoBehaviour
 
     private void DoExplosion()
     {
-        var exp = Instantiate(_explosion, transform.position, Quaternion.identity);
+        var post = transform.position;
+        post.y += 1;
+        var exp = Instantiate(_explosion, post, Quaternion.identity);
     }
 
     private void UpdateStageVisuals()

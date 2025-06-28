@@ -110,6 +110,8 @@ public class UIController : MonoBehaviour
 
     public void UpdateLife(int life)
     {
+        Debug.Log("Life Count " + life);
+        
         for (int i = 0; i < lifeIcons.Length; i++)
         {
             MPImage img = lifeIcons[i].GetComponent<MPImage>();
@@ -130,13 +132,13 @@ public class UIController : MonoBehaviour
 
     public void OnClickRestart()
     {
-      //  SoundManager.Instance.PlayClick();
+        SoundManager.Instance.PlayClick();
         GameManager.Instance.ChangeState(GameManager.GameState.Gameplay);
     }
 
     public void OnClickHome()
     {
-     //   SoundManager.Instance.PlayClick();
+        SoundManager.Instance.PlayClick();
         GameManager.Instance.ChangeState(GameManager.GameState.Menu);
     }
 
