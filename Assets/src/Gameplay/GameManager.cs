@@ -168,6 +168,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateKillCount()
+    {
+        GameData.CurrentScore++;
+        UpdateLifeAndScore();
+    }
+    public void UpdateLifeCount(int lifeCount)
+    {
+        GameData.CurrentLives = lifeCount;
+        UpdateLifeAndScore();
+    }
+
     public void UpdateLifeAndScore()
     {
         uiController.UpdateScore(GameData.CurrentScore);
@@ -177,5 +188,10 @@ public class GameManager : MonoBehaviour
     private void ExitResult()
     {
         Debug.Log("Exited Result");
+    }
+
+    public void ShowKillEffect(Transform enemy)
+    {
+        uiController.ShowKillEffect(enemy);
     }
 }

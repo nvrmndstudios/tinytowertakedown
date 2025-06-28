@@ -26,6 +26,8 @@ public class Targetable : MonoBehaviour
         Debug.Log($"{gameObject.name} is dead");
         // Optional: Add animation, effects, or disable collider
         OnDeath?.Invoke();
+        GameManager.Instance.ShowKillEffect(transform);
+        GameManager.Instance.UpdateKillCount();
         Destroy(gameObject); // Or customize
     }
     

@@ -7,24 +7,16 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
    [SerializeField] private Canvas canvas;
-   [SerializeField] private List<GameObject> _winFailPrefabs;
+   [SerializeField] private GameObject _killEffect;
 
 
    private List<GameObject> _generatedClones = new List<GameObject>();
-   public void PlayWinEffect(Transform player)
+   public void ShowKillEffect(Transform player)
    {
-      GameObject instance = Instantiate(_winFailPrefabs[0]);
+      GameObject instance = Instantiate(_killEffect);
       _generatedClones.Add(instance);
       instance.GetComponent<FloatingTextEffect>().Initialize(player.position, canvas);
    }
-
-   public void PlayFailEffect(Transform player)
-   {
-      GameObject instance = Instantiate(_winFailPrefabs[1]);
-      _generatedClones.Add(instance);
-      instance.GetComponent<FloatingTextEffect>().Initialize(player.position, canvas);
-   }
-   
    
     [Header("Screens")]
     public GameObject splashScreen;

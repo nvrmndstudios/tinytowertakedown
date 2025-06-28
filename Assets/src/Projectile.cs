@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private GameObject _blast;
     private Transform target;
     private float speed = 40f;
     private bool lostTarget = false;
@@ -47,6 +48,7 @@ public class Projectile : MonoBehaviour
             var t = target.GetComponent<Targetable>();
             if (t != null)
             {
+                var blst = Instantiate(_blast, t.transform.position, Quaternion.identity);
                 t.MarkAsDead();
             }
 

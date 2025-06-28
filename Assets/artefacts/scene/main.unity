@@ -429,6 +429,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8612517234381286881, guid: 1be6863650d7345448185422dc6d52c0, type: 3}
+      propertyPath: _killEffect
+      value: 
+      objectReference: {fileID: 2799790870480033679, guid: 520427f2625ab488d865bfa48a619885, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1300,6 +1304,7 @@ MonoBehaviour:
   - {fileID: 2095577736}
   - {fileID: 1251669756}
   - {fileID: 320858454}
+  _explosion: {fileID: 8255009700467685173, guid: 31fb561fad843473b8b1172aca2d0287, type: 3}
   CastleDestroyed: 0
 --- !u!1 &1103350784
 GameObject:

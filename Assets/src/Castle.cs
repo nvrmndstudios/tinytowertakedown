@@ -11,6 +11,8 @@ public class Castle : MonoBehaviour
     [Tooltip("Index 3 = Stage 3, Index 2 = Stage 2, Index 1 = Stage 1, Index 0 = Game Over")]
     [SerializeField] private GameObject[] stageVisuals;
 
+    [SerializeField] private GameObject _explosion;
+
     public Action<int> OnStageChanged;
     public Action OnGameOver;
 
@@ -40,17 +42,26 @@ public class Castle : MonoBehaviour
         {
             currentStage = newStage;
             CastleDestroyed = true;
+            GameManager.Instance.UpdateLifeCount(0);
             GameManager.Instance.ChangeState(GameManager.GameState.Result);
+            DoExplosion();
             return;
         }
 
         if (newStage < currentStage)
         {
             currentStage = newStage;
+            GameManager.Instance.UpdateLifeCount(currentStage);
             Debug.Log($"Castle stage set to {currentStage}");
             OnStageChanged?.Invoke(currentStage);
+            DoExplosion();
             UpdateStageVisuals();
         }
+    }
+
+    private void DoExplosion()
+    {
+        var exp = Instantiate(_explosion, transform.position, Quaternion.identity);
     }
 
     private void UpdateStageVisuals()
