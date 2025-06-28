@@ -6,7 +6,7 @@ using UnityEngine;
 public class Castle : MonoBehaviour
 {
     [Header("Castle Stage (3 → 2 → 1 → 0 = Game Over)")]
-    public int currentStage = 3;
+    public int currentStage = 2;
 
     [Tooltip("Index 3 = Stage 3, Index 2 = Stage 2, Index 1 = Stage 1, Index 0 = Game Over")]
     [SerializeField] private GameObject[] stageVisuals;
@@ -14,21 +14,33 @@ public class Castle : MonoBehaviour
     public Action<int> OnStageChanged;
     public Action OnGameOver;
 
-    private void Start()
+    public bool CastleDestroyed = false;
+
+    public void StartGame()
     {
+        CastleDestroyed = false;
+        currentStage = 2;
         UpdateStageVisuals();
+        Debug.Log("Castle reset to stage 3");
+    }
+
+    public void EndGame()
+    {
+        
     }
 
     public void TrySetStage(int newStage)
     {
+        if (CastleDestroyed)
+        {
+            return;
+        }
+
         if (newStage == -1)
         {
-            foreach (var t in stageVisuals)
-            {
-                t.SetActive(false);
-            }
-            OnGameOver?.Invoke();
-            Debug.Log("Castle destroyed!");
+            currentStage = newStage;
+            CastleDestroyed = true;
+            GameManager.Instance.ChangeState(GameManager.GameState.Result);
             return;
         }
 
@@ -43,15 +55,16 @@ public class Castle : MonoBehaviour
 
     private void UpdateStageVisuals()
     {
-        if (stageVisuals == null)
+        if (stageVisuals == null || stageVisuals.Length == 0)
         {
-            Debug.Log("Stage visuals array is not properly configured.");
+            Debug.LogWarning("Stage visuals not configured.");
             return;
         }
 
         for (int i = 0; i < stageVisuals.Length; i++)
         {
-            stageVisuals[i].SetActive(i == currentStage);
+            if (stageVisuals[i] != null)
+                stageVisuals[i].SetActive(i == currentStage);
         }
     }
 }

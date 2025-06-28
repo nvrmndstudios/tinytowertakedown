@@ -28,11 +28,7 @@ public class WaveEnemySpawner : MonoBehaviour
     [SerializeField] private float stage2Radius = 6f;
     [SerializeField] private float stage1Radius = 3f;
     [SerializeField] private float deathRadius = 1f;
-
-    private void Start()
-    {
-        StartGame();
-    }
+    
 
     public void StartGame()
     {
@@ -53,7 +49,17 @@ public class WaveEnemySpawner : MonoBehaviour
         isGameActive = false;
         StopAllCoroutines();
 
-        activeEnemies.Clear();
+        if (activeEnemies != null)
+        {
+            foreach (var t in activeEnemies)
+            {
+                if (t != null)
+                {
+                    Destroy(t);
+                }
+            }
+        }
+        activeEnemies = new List<GameObject>();
     }
 
     IEnumerator HandleWaves()

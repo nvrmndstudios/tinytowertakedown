@@ -70,7 +70,8 @@ public class Targetable : MonoBehaviour
 
         if (dist <= deathRadius)
         {
-            castle.TrySetStage(0); // Game Over
+            castle.TrySetStage(-1); 
+            castle = null;
         }
         else if (dist <= stage1Radius)
         {
